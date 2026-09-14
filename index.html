@@ -204,7 +204,7 @@ h1,h2,h3,h4,h5,h6{font-weight:700}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;font-family:"Dancing Script",cursive}
 body{
-  min-height:100vh; overflow:hidden;
+  min-height:100vh; overflow-x:hidden; overflow-y:auto;
   background:linear-gradient(145deg,#fff7fb,#ffeef5,#fff8f3);
   color:#6b4052;
 }
@@ -272,7 +272,7 @@ let answerPacket=hash.startsWith('#answers=')?unb64(hash.slice(9)):(qanswers?unb
 let data={name:'',senderName:'',rel:'',messages:'',reasons:'',favorite:'',secret:'',photos:[],question:'',questions:[],voice:''};
 
 function home(){app.innerHTML=`<div class="card"><div class="garden">🌷 ✨ 🌸 ✨ 🌷</div><div class="script">Some feelings deserve more than a message. ♡</div><p class="sub">Turn the words you keep inside into a little love story — personal, beautiful, and made for someone special.</p><button onclick="start()">Begin Something Beautiful ❤️</button><p class="small">Made with little pieces of love, stars & flowers ✦</p></div>`}
-function start(){ if(location.hash && (location.hash.startsWith('#surprise=')||location.hash.startsWith('#answers='))) return; step(1); history.pushState({screen:'sender',step:1},'',location.href.split('#')[0]+'#sender-1'); }
+function start(){step(1)}
 const steps=[
 ['Who is this little love story for?','Start with the person who makes your heart feel a little fuller.'],
 ['What have you been wanting to say?','Write the words you usually keep inside. Take your time.'],
@@ -294,7 +294,7 @@ function step(n){
  if(n===6) body=`<div class="field"><input id="photos" type="file" accept="image/*" multiple><p class="small">You can choose a few special memories. They will appear one by one inside the surprise. 🌸</p></div>`;
  if(n===7) body=`<div class="voice-panel"><div class="script" style="font-size:32px">A Little Voice From You 🎙️💗</div><p class="sub">Say something they can hear in your own voice. Keep it short and sweet. ♡</p><button type="button" id="recordBtn" onclick="toggleRecording()">🎙️ Start Recording</button><div id="voiceStatus" class="voice-status">${data.voice?'A voice message is ready ♡':'Nothing recorded yet'}</div><audio id="voicePreview" controls class="${data.voice?'':'hidden'}" src="${data.voice||''}"></audio></div><p class="small">Next, you can choose the questions you want them to answer. 💌</p>`;
  if(n===8){const defaults=['What is one little thing about us that makes you smile? 💗','When you think of me, what is the first memory that comes to your heart? 🌸','What is something you want us to do together someday? ✨','What is one thing you want me to always remember about you? 💌','If our story had one more beautiful chapter, what would you want it to be? 🌷']; if(!data.questions.length)data.questions=defaults.map(q=>({text:q,enabled:true})); body=`<div id="questionList">${data.questions.map((q,i)=>`<div class="question-edit"><div class="field"><label>Question ${i+1}</label><textarea class="qinput" data-i="${i}">${esc(q.text)}</textarea><label class="checkline"><input type="checkbox" class="qcheck" data-i="${i}" ${q.enabled!==false?'checked':''}> Ask this question 💗</label></div></div>`).join('')}</div><div class="nav"><button type="button" class="secondary" onclick="addQuestion()">＋ Add Another Question</button></div><p class="small">You can edit every question, remove one by clearing it, or add as many as you like. The receiver will see only the questions you choose — never the sender-side form. ♡</p>`;}
- app.innerHTML=`<div class="card"><div class="progress"><i style="width:${n/8*100}%"></i></div><span class="pill">A little beginning · ${n} of 8</span><h2 class="script">${title}</h2><p class="sub">${desc}</p>${body}<div class="nav">${n>1?'<button class="secondary" onclick="senderBack('+n+')">Back</button>':''}<button onclick="${n===8?'validateSenderStep(8)&&finish()':'nextSenderStep('+n+')'}">${n===8?'Make Them Surprise 💗':'Keep going, love ♡'}</button></div></div>`;
+ app.innerHTML=`<div class="card"><div class="progress"><i style="width:${n/8*100}%"></i></div><span class="pill">A little beginning · ${n} of 8</span><h2 class="script">${title}</h2><p class="sub">${desc}</p>${body}<div class="nav">${n>1?'<button class="secondary" onclick="saveStep();step('+(n-1)+')">Back</button>':''}<button onclick="${n===8?'validateSenderStep(8)&&finish()':'nextSenderStep('+n+')'}">${n===8?'Make Them Surprise 💗':'Keep going, love ♡'}</button></div></div>`;
 }
 function validateSenderStep(n){
  if(n===1){
@@ -363,7 +363,7 @@ async function finish(){
 function receiver(){app.innerHTML=`<div class="receiver-screen"><div class="receiver-card"><div id="receiverHome"><div class="receiver-decor">🌷 ✨ ♡ ✨ 🌷</div><div class="receiver-script">Hey <span class="receiver-name">${esc(received.name||'someone special')}</span>… ♡</div><p class="receiver-soft">Someone special has sent a little something just for you. 💗</p><p class="receiver-message" style="font-size:29px;margin:18px 0">There’s something waiting behind this little door…<br>made especially for you. ♡</p><div class="receiver-door-wrap"><div class="receiver-gate" id="receiverGate" onclick="openGate()"><div class="receiver-gate-frame"></div><div class="receiver-gate-door"></div></div></div><button class="receiver-open-btn" onclick="openGate()">Tap to Reveal the Name ✨</button></div><div id="receiverContent" class="receiver-content"></div></div></div>`}
 function openGate(){const g=document.getElementById('receiverGate');if(!g)return;g.classList.add('open');setTimeout(()=>revealSender(),1000)}
 function revealSender(){const box=document.getElementById('receiverContent'),home=document.getElementById('receiverHome');home.style.display='none';box.innerHTML=`<div class="receiver-step active"><div class="receiver-decor">💗 ✨ 🌸 ✨ 💗</div><div class="receiver-title">It’s <span class="receiver-name">${esc(received.senderName||'Someone Special')}</span>… ❤️</div><p class="receiver-soft">${esc(received.senderName||'Someone Special')} has sent you this little surprise. 💌</p><div class="receiver-letter"><div class="receiver-message">A little piece of my heart is waiting for you inside… just for you. ♡</div></div><button class="receiver-open-btn" onclick="showStep(0)">More surprises are waiting for you… 💗</button><button class="receiver-back" onclick="goHome()">← Go Back ♡</button></div>`}
-function goHome(){ if(location.hash.startsWith('#surprise=')){ receiver(); return; } home(); }
+function goHome(){location.hash='';location.reload()}
 function items(){return [
  {kind:'message',title:'Some words are meant to be felt, not just read… 💌',text:received.messages,more:'Let Me Show You Another Little Feeling… 🌷'},
  {kind:'message',title:'A little corner of my heart… 💗',text:[received.reasons,received.favorite].filter(Boolean).join('\n\n'),more:'There’s One More Thing I Kept For You… ✨'},
@@ -375,9 +375,9 @@ function showStep(i){stepIndex=i;const s=items()[i],box=document.getElementById(
 function nextStep(){if(stepIndex<items().length-1)showStep(stepIndex+1);else showQuestions()}
 function backStep(){if(stepIndex>0)showStep(stepIndex-1);else revealSender()}
 function renderPhoto(i){const s=items()[3],area=document.getElementById('photoArea');if(!area)return;if(!s.photos.length){area.innerHTML='<div class="receiver-letter"><div class="receiver-message">Some memories are felt, not just seen. ♡</div></div><button class="receiver-more receiver-question-btn" onclick="nextStep()">'+s.more+'</button>';return}const p=s.photos[i];area.innerHTML=`<div class="receiver-memory"><img src="${p}" alt="A special memory"><div class="receiver-soft" style="margin-top:12px">${i+1} of ${s.photos.length} · A memory wrapped in love ♡</div></div><button class="receiver-more receiver-question-btn" onclick="${i<s.photos.length-1?`renderPhoto(${i+1})`:'nextStep()'}">${i<s.photos.length-1?'Another little memory… 🌸':s.more}</button>`}
-window.questionAnswers=[];window.receiverQuestions=(received.questions||[]).filter(q=>q&&q.text&&q.enabled!==false);
+window.questionAnswers=[];window.receiverQuestions=(received?.questions||[]).filter(q=>q&&q.text&&q.enabled!==false);
 function showQuestions(){const box=document.getElementById('receiverContent');if(!window.receiverQuestions.length){finishReceiver();return}box.innerHTML=`<div class="receiver-step active"><div class="receiver-decor">🌹 ✨ 💌 ✨ 🌹</div><div class="receiver-title">A Few Little Things From Your Heart… ♡</div><p class="receiver-soft">${esc(received.senderName||'Someone special')} left these little questions for you. Every answer is required, because every little answer matters. ❤️</p><div id="allQuestionAnswers"></div><button class="receiver-more send-heart" onclick="sendAllAnswers()">Send Your Heart ❤️</button><button class="receiver-back" onclick="backStep()">← Go Back & Read Again ♡</button></div>`;const list=document.getElementById('allQuestionAnswers');window.receiverQuestions.forEach((q,i)=>{const w=document.createElement('div');w.className='receiver-question-card';w.innerHTML=`<div class="receiver-soft" style="font-size:22px">Question ${i+1} 💌</div><div class="receiver-letter"><div class="receiver-question">${esc(q.text)}</div></div><div class="receiver-answer-label">Your little answer… ♡</div><textarea class="receiver-answer all-answer" data-i="${i}" required placeholder="Write your heart here… 💗"></textarea>`;list.appendChild(w)})}
-function sendAllAnswers(){const fields=[...document.querySelectorAll('.all-answer')];const answers=window.receiverQuestions.map((q,i)=>({question:q.text,answer:(fields[i]?.value||'').trim()}));const missing=answers.findIndex(x=>!x.answer);if(missing>=0){alert(`Question ${missing+1} ka answer dena zaroori hai 💗`);fields[missing]?.focus();return}window.questionAnswers=answers.map(x=>x.answer);const packet={senderName:received.senderName||'Someone Special',receiverName:received.name||'Someone Special',questions:answers};window.finalAnswerLink=location.href.split('#')[0]+'#answers='+b64(packet);showAnswerReady()}
+function sendAllAnswers(){const fields=[...document.querySelectorAll('.all-answer')];const answers=window.receiverQuestions.map((q,i)=>({question:q.text,answer:(fields[i]?.value||'').trim()}));const missing=answers.findIndex(x=>!x.answer);if(missing>=0){alert(`Question ${missing+1} ka answer dena zaroori hai 💗`);fields[missing]?.focus();return}window.questionAnswers=answers.map(x=>x.answer);const packet={senderName:received.senderName||'Someone Special',receiverName:received.name||'Someone Special',questions:answers};window.finalAnswerLink=location.href.split('#')[0].split('?')[0]+'?answers='+encodeURIComponent(b64(packet));showAnswerReady()}
 function showAnswerReady(){const box=document.getElementById('receiverContent');box.innerHTML=`<div class="receiver-step active"><div class="receiver-decor">💗 ✨ 🌸 ✨ 💗</div><div class="receiver-title">Your Heart Is Ready to Travel… ❤️</div><div class="receiver-letter"><div class="receiver-message">You answered every little question with your own heart. Now your reply is ready to go back to ${esc(received.senderName||'them')}. 💌</div></div><button class="receiver-open-btn send-heart" onclick="shareAnswer()">Send Your Heart ❤️</button><div class="answer-link-box"><div class="receiver-soft" style="font-size:21px">Your reply link</div><textarea readonly>${esc(window.finalAnswerLink)}</textarea></div><button class="receiver-back" onclick="showQuestions()">← Go Back & Edit Answers ♡</button></div>`}
 async function shareAnswer(){const link=window.finalAnswerLink;if(navigator.share){try{await navigator.share({title:'A little reply ❤️',text:'I sent you my heart 💗',url:link});return}catch(e){}}try{await navigator.clipboard.writeText(link);alert('Your answer link is copied. Send it to them with love ❤️')}catch(e){prompt('Copy your answer link:',link)}}
 function finishReceiver(){document.getElementById('receiverContent').innerHTML='<div class="receiver-step active"><div class="receiver-decor">💗 ✨ 🌸</div><div class="receiver-title">That was the last little question ♡</div><div class="receiver-letter"><div class="receiver-message">Thank you for opening every little piece of this surprise. You made the story even more beautiful. 🌷</div></div></div>'}
@@ -413,17 +413,15 @@ async function shareAnswer(){
 function resize(file,max){return new Promise(r=>{let im=new Image(),c=document.createElement('canvas'),x=URL.createObjectURL(file);im.onload=()=>{let q=Math.min(1,max/im.width,max/im.height);c.width=im.width*q;c.height=im.height*q;c.getContext('2d').drawImage(im,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.72));URL.revokeObjectURL(x)};im.src=x})}
 function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 
-function senderBack(n){ saveStep(); if(history.state && history.state.screen==='sender'){ history.back(); } else { const prev=n-1; step(prev); history.replaceState({screen:'sender',step:prev},'',location.href.split('#')[0]+'#sender-'+prev); } }
-function goBackFromFinal(){ saveStep(); step(8); history.pushState({screen:'sender',step:8},'',location.href.split('#')[0]+'#sender-8'); }
-
-// Keep browser/Android back inside the current experience instead of resetting to the home screen.
-window.addEventListener('popstate',function(){
-  const h=location.hash;
-  if(h.startsWith('#sender-')){ const n=parseInt(h.slice(8),10); if(n>=1&&n<=8){ step(n); return; } }
-  if(h.startsWith('#surprise=')){ received=unb64(h.slice(10)); if(received){ receiver(); return; } }
-  if(h.startsWith('#answers=')){ const packet=unb64(h.slice(9)); if(packet){ senderAnswer(packet); return; } }
-  home();
-});
+function goBackFromFinal(){
+  if(typeof step==='function'){
+    try{ step(8); return; }catch(e){}
+  }
+  if(typeof currentStep!=='undefined' && typeof renderStep==='function'){
+    try{ currentStep=8; renderStep(); return; }catch(e){}
+  }
+  history.back();
+}
 
 
 </script>
