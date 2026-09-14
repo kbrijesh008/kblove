@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A Little Love Story ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Dancing+Script:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+:root{--rose:#e95d7a;--rose2:#ff9ab0;--cream:#fff8f5;--ink:#4b3440;--gold:#e9b85c}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--ink);font-family:"Dancing Script",cursive;background:radial-gradient(circle at 20% 10%,#ffd9e7,transparent 38%),radial-gradient(circle at 80% 90%,#ffe8f1,transparent 42%),linear-gradient(135deg,#fff0f6,#ffe4ee);overflow-x:hidden}
+body:before{content:"✦  ✧  ♡  ✦  ✧";position:fixed;inset:8% 0 auto;text-align:center;color:#f3a7b8;letter-spacing:28px;opacity:.35;pointer-events:none}
+.wrap{max-width:720px;margin:auto;padding:24px 16px 50px}.screen{min-height:calc(100vh - 74px);display:flex;align-items:center;justify-content:center}.card{width:100%;background:#ffffffd9;backdrop-filter:blur(14px);border:1px solid #ffffff;border-radius:30px;padding:28px;box-shadow:0 22px 70px #c66b8625;text-align:center}
+h1,h2,.script{font-family:"Dancing Script",cursive;font-weight:700}.script{font-size:45px;line-height:1.08}.sub{font-family:"Dancing Script",cursive;font-size:25px;font-weight:600;line-height:1.45;color:#775b66}.small{font-family:"Dancing Script",cursive;font-size:20px;font-weight:600;color:#987784}
+button{border:0;border-radius:999px;padding:13px 20px;font:700 21px "Dancing Script",cursive;cursor:pointer;color:white;background:linear-gradient(135deg,var(--rose),#c83f64);box-shadow:0 9px 24px #d955752e;transition:.2s}button:hover{transform:translateY(-2px)}button.secondary{background:#fff;color:var(--rose);border:1px solid #f2c4cf;box-shadow:none}button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+input,textarea{width:100%;border:1px solid #f0ccd5;border-radius:18px;padding:14px 15px;background:#fffafc;color:var(--ink);font:20px "Dancing Script",cursive;outline:none}textarea{min-height:150px;font-size:23px;line-height:1.5;resize:vertical}.field{margin:16px 0;text-align:left}.field label{display:block;font:600 21px "Dancing Script",cursive;margin:0 0 8px;color:#8c6571}.choices{display:flex;flex-wrap:wrap;gap:8px}.choices button{flex:1;min-width:120px}.choices button.sel{background:linear-gradient(135deg,var(--rose),#c83f64);color:#fff;border-color:transparent;box-shadow:0 7px 18px #d9557530;transform:translateY(-1px)}.progress{height:6px;background:#f5dce2;border-radius:10px;overflow:hidden;margin-bottom:20px}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--rose),#f6a3b5);transition:.3s}
+.door-wrap{display:flex;justify-content:center;margin:24px 0}.door{width:180px;height:240px;border-radius:18px 18px 10px 10px;background:linear-gradient(90deg,#f48aaa,#d95a7e 48%,#c63e68);border:7px solid #ffd0df;box-shadow:0 20px 35px #9d5e4c38;position:relative;transform-origin:left;transition:1s;cursor:pointer}.door.open{transform:perspective(700px) rotateY(-105deg)}.door:before{content:"♡";font:56px Caveat;color:#ffe9e0;position:absolute;inset:68px 0 auto;text-align:center}.knob{position:absolute;right:20px;top:122px;width:12px;height:12px;border-radius:50%;background:#ffd1df}.garden{font-size:40px;letter-spacing:6px}.pill{display:inline-block;padding:7px 13px;border-radius:999px;background:#fff0f4;color:#c95772;font:600 18px "Dancing Script",cursive;margin:4px}.content-box{margin:18px 0;padding:24px;border-radius:24px;background:linear-gradient(145deg,#fff,#fff4f7);border:1px solid #f5d5dc;box-shadow:inset 0 0 35px #ffdfe84a}.message,.content-box textarea,.content-box input{font-family:Caveat,cursive;font-size:20px;line-height:1.5;white-space:pre-wrap}.memory{width:100%;max-height:58vh;object-fit:contain;border-radius:22px;box-shadow:0 18px 45px #9b56652a}.nav{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}.hidden{display:none!important}.dots{font-size:20px;color:#e87991;letter-spacing:5px}.answer{min-height:120px}.question-edit{padding:14px;border:1px solid #f3d3dc;border-radius:20px;background:#fff9fb;margin:10px 0}.question-edit textarea{min-height:88px;font-size:22px}.checkline{display:flex!important;align-items:center;gap:8px;font:600 19px "Dancing Script",cursive!important}.checkline input{width:auto}.question-text{font-family:"Dancing Script",cursive!important;font-size:29px!important;padding:18px;border-radius:18px;background:#fff4f7;border:1px dashed #efb9c8;margin:12px 0}.answer-message{font-family:"Dancing Script",cursive;font-size:25px;background:#fff6f8;border-radius:18px;padding:15px}.voice-panel{padding:16px;border:1px solid #f2d1d9;border-radius:20px;background:#fff8fa;text-align:center;margin:12px 0}.voice-status{font-family:"Dancing Script",cursive;font-size:25px;font-weight:600;color:#9b5c6e;margin:8px}.voice-panel audio{width:100%;margin-top:10px}
+@media(max-width:480px){.script{font-size:36px}.sub{font-size:19px}.message,.content-box textarea,.content-box input{font-size:19px}.card{padding:22px 18px}.choices button{min-width:calc(50% - 8px)}}
+
+.question-romantic,.receiver-question,.message,.love-message,.feeling-text,.secret-text{
+  font-family:Caveat,cursive!important;
+  color:#7b2946;
+  letter-spacing:.2px;
+}
+.question-romantic,.receiver-question{font-size:27px!important;line-height:1.35}
+.message,.love-message,.feeling-text,.secret-text{font-size:21px!important;line-height:1.55}
+
+
+.compact-share{
+  width:auto!important;
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  padding:10px 18px!important;
+  min-height:42px;
+  font-size:16px!important;
+  border-radius:999px!important;
+  white-space:nowrap;
+}
+
+
+.make-surprise-cta{
+  width:auto!important;
+  max-width:100%;
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  padding:11px 20px!important;
+  font-size:17px!important;
+  border-radius:999px!important;
+  white-space:normal!important;
+}
+
+
+.make-surprise-cta{
+  width:auto!important;
+  max-width:100%;
+  display:inline-flex!important;
+  align-items:center;
+  justify-content:center;
+  padding:11px 20px!important;
+  font-size:17px!important;
+  border-radius:999px!important;
+  white-space:nowrap!important;
+}
+
+
+.final-back-btn{
+  margin-top:12px;
+  width:auto!important;
+  min-width:140px;
+  padding:10px 20px!important;
+  font-size:16px!important;
+  border-radius:999px!important;
+}
+
+
+.romantic-question-card{text-align:center;overflow:hidden}
+.question-envelope{
+  position:relative;
+  margin:22px 0 18px;
+  padding:30px 20px 24px;
+  border:1px solid #f2c9d4;
+  border-radius:28px;
+  background:linear-gradient(145deg,#fffafb,#fff1f5);
+  box-shadow:0 16px 38px #d45b7720,inset 0 0 28px #ffdfe84d;
+}
+.envelope-top{font-size:31px;margin-bottom:10px}
+.question-envelope .receiver-question{
+  font-family:Caveat,cursive!important;
+  font-size:29px!important;
+  line-height:1.38;
+  color:#743049;
+  margin:4px auto 14px;
+  white-space:pre-wrap;
+}
+.envelope-bottom{
+  font-family:Caveat,cursive;
+  font-size:19px;
+  color:#b05c73;
+}
+.answer-label{
+  font-family:Caveat,cursive;
+  font-size:22px;
+  color:#8c4059;
+  margin:12px 0 8px;
+}
+.romantic-answer{
+  font-family:Caveat,cursive!important;
+  font-size:19px!important;
+  line-height:1.5;
+}
+@media(max-width:480px){
+  .question-envelope .receiver-question{font-size:26px!important}
+}
+
+
+/* ===== RECEIVER: warm, personal, fully handwritten ===== */
+.receiver-screen,.receiver-screen *{font-family:"Dancing Script",cursive!important}
+.receiver-screen{min-height:calc(100vh - 74px);display:flex;align-items:center;justify-content:center}
+.receiver-card{width:100%;background:linear-gradient(145deg,#fff4f8ee,#ffe8f1ee);border:1px solid #efa9bf;border-radius:34px;padding:28px 20px;box-shadow:0 22px 70px #c66b8625;text-align:center;overflow:hidden}
+.receiver-script{font-family:"Dancing Script",cursive!important;font-weight:700;font-size:46px;line-height:1.08;color:#7c2948}
+.receiver-name{font-family:"Dancing Script",cursive!important;font-weight:700;font-size:57px;line-height:1;color:#c13d67}
+.receiver-soft{font-family:"Dancing Script",cursive!important;font-weight:600;font-size:25px;line-height:1.48;color:#9b536c}
+.receiver-decor{font-family:inherit!important;font-size:25px;letter-spacing:4px;margin-bottom:12px}
+.receiver-door-wrap{display:flex;justify-content:center;margin:25px 0 20px;perspective:900px}
+.receiver-gate{width:170px;height:195px;position:relative;cursor:pointer}
+.receiver-gate-frame{position:absolute;inset:0;border:3px solid #d99aad;border-radius:90px 90px 13px 13px}
+.receiver-gate-door{position:absolute;left:14px;top:6px;width:142px;height:183px;border-radius:76px 76px 10px 10px;background:linear-gradient(145deg,#dc6d8c,#a93259);box-shadow:0 18px 34px #9b345320;transform-origin:left center;transition:1.2s cubic-bezier(.18,.8,.16,1)}
+.receiver-gate-door:before{content:"♡";position:absolute;left:0;right:0;top:44px;text-align:center;color:#ffe1e9;font:74px Georgia}
+.receiver-gate-door:after{content:"✦";position:absolute;right:19px;top:91px;color:#ffeaf0;font:16px Georgia}
+.receiver-gate.open .receiver-gate-door{transform:perspective(900px) rotateY(-104deg);box-shadow:none}
+.receiver-open-btn{font-family:"Dancing Script",cursive!important;font-size:23px!important;font-weight:700!important;padding:13px 25px!important}
+.receiver-content{margin-top:8px}
+.receiver-step{display:none}
+.receiver-step.active{display:block;animation:receiverAppear .7s ease}
+@keyframes receiverAppear{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+.receiver-title{font-family:"Dancing Script",cursive!important;font-size:43px;font-weight:700;line-height:1.15;color:#7e2b4a}
+.receiver-letter{margin:19px 0;padding:26px 18px;border-radius:28px;background:#fffafd;border:1px solid #efc4d0;box-shadow:0 10px 25px #a83d5c0d}
+.receiver-message{font-family:"Dancing Script",cursive!important;font-size:31px;font-weight:600;line-height:1.52;color:#703047;white-space:pre-wrap}
+.receiver-more{font-family:"Dancing Script",cursive!important;font-size:24px!important;font-weight:700!important;background:#fff!important;color:#923652!important;border:1px solid #e4b0bf!important;box-shadow:none!important}
+.receiver-back{font-family:"Dancing Script",cursive!important;font-size:22px!important;font-weight:600!important;color:#a85a70!important;background:none!important;box-shadow:none!important;border:0!important;margin-top:24px}
+.receiver-memory{padding:14px;border-radius:25px;background:#fff;border:1px solid #edc0cd}
+.receiver-memory img{width:100%;max-height:58vh;object-fit:contain;border-radius:22px;box-shadow:0 18px 45px #9b56652a}
+.receiver-question-card{margin-top:18px;padding:25px 17px;border-radius:29px;background:linear-gradient(145deg,#fff,#fff1f5);border:1px solid #efc3d0;box-shadow:0 16px 38px #d45b7720}
+.receiver-question{font-family:"Dancing Script",cursive!important;font-size:34px!important;font-weight:600!important;line-height:1.48;color:#713049;white-space:pre-wrap}
+.receiver-answer-label{font-family:"Dancing Script",cursive!important;font-size:25px;color:#8c4059;margin:13px 0 8px}
+.receiver-answer{font-family:"Dancing Script",cursive!important;font-size:26px!important;font-weight:500!important;line-height:1.5;min-height:125px}
+.receiver-question-btn{font-family:"Dancing Script",cursive!important;font-size:23px!important;font-weight:700!important}
+@media(max-width:480px){
+ .receiver-script{font-size:42px}.receiver-name{font-size:53px}.receiver-soft{font-size:23px}
+ .receiver-title{font-size:39px}.receiver-message{font-size:28px}.receiver-question{font-size:30px!important}
+}
+
+
+/* v15: receiver and answer-return text is English + fully romantic */
+.receiver-screen,.receiver-screen *{font-family:"Dancing Script",cursive!important}
+.receiver-screen .receiver-soft{font-size:25px;line-height:1.5;font-weight:600}
+.receiver-screen .receiver-title{font-size:43px;line-height:1.15;font-weight:700}
+.receiver-screen .receiver-message{font-size:31px;line-height:1.52;font-weight:600}
+.receiver-screen button{font-family:"Dancing Script",cursive!important;font-size:23px}
+.answer-return-card,.answer-return-card *{font-family:"Dancing Script",cursive!important}
+.answer-return-card{font-size:24px}
+.answer-return-title{font-size:46px;font-weight:700;line-height:1.1}
+.answer-return-question{font-size:30px;line-height:1.45}
+.answer-return-answer{font-size:29px;line-height:1.5}
+
+/* v16 — consistent romantic handwritten typography across the whole sender + receiver experience */
+body,body *{font-family:"Dancing Script",cursive!important}
+button{font-weight:700!important;letter-spacing:.1px}
+input,textarea{font-weight:500!important}
+.progress,.progress *,.knob,.door:before{font-family:inherit}
+h1,h2,h3,h4,h5,h6{font-weight:700}
+
+.receiver-reveal-name{font-family:"Dancing Script",cursive!important;font-size:50px;font-weight:700;color:#c13d67}
+
+.receiver-double-door{width:210px;height:170px;margin:23px auto;position:relative;perspective:1000px}
+.receiver-double-door-frame{position:absolute;inset:0;border:3px solid #d99aad;border-radius:28px 28px 10px 10px}
+.receiver-door-left,.receiver-door-right{position:absolute;top:6px;width:96px;height:158px;background:linear-gradient(145deg,#e17896,#ad345b);box-shadow:0 15px 28px #9b345320;transition:1s cubic-bezier(.18,.8,.16,1);z-index:2}
+.receiver-door-left{left:8px;border-radius:24px 5px 7px 24px;transform-origin:left center}
+.receiver-door-right{right:8px;border-radius:5px 24px 24px 7px;transform-origin:right center}
+.receiver-door-left:before,.receiver-door-right:before{position:absolute;color:#ffe3eb;font:48px Georgia;top:49px}
+.receiver-door-left:before{content:"♡";right:20px}.receiver-door-right:before{content:"♡";left:20px}
+.receiver-double-door.open .receiver-door-left{transform:perspective(900px) rotateY(-108deg)}
+.receiver-double-door.open .receiver-door-right{transform:perspective(900px) rotateY(108deg)}
+.heart-door{width:230px;height:190px;margin:24px auto;filter:drop-shadow(0 12px 18px rgba(170,80,110,.18));}
+.heart-panel{display:flex;align-items:center;justify-content:center;font-family:"Dancing Script",cursive;font-size:76px;color:#fff;background:linear-gradient(135deg,#f6a9bd,#e982a4);border:2px solid #fff0f5;box-shadow:inset 0 0 25px rgba(255,255,255,.22);}
+.heart-panel::after{content:"";position:absolute;inset:8px;border:1px solid rgba(255,255,255,.55);border-radius:inherit;pointer-events:none;}
+
+
+/* Clean pink receiver finish */
+.receiver-card{position:relative;background:linear-gradient(145deg,rgba(255,247,250,.98),rgba(255,228,239,.98));}
+.receiver-step{width:100%;}
+.receiver-step.active{animation:receiverAppear .7s ease both;}
+.receiver-letter{background:linear-gradient(145deg,#fff8fb,#ffeef4);border-color:#f0b2c5;}
+.receiver-title,.receiver-script,.receiver-name{color:#c43f68;}
+.receiver-soft,.receiver-message{color:#8f405b;}
+.receiver-more{background:linear-gradient(135deg,#fff5f9,#ffdce8)!important;color:#b93661!important;border-color:#e998b3!important;box-shadow:0 8px 22px rgba(195,63,104,.12)!important;}
+.receiver-double-door-frame{border-color:#ee9db7;}
+.heart-panel{background:linear-gradient(135deg,#ffb3c9,#e9688f)!important;border-color:#ffeaf2!important;}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:"Dancing Script",cursive}
+body{
+  min-height:100vh; overflow-x:hidden; overflow-y:auto;
+  background:linear-gradient(145deg,#fff7fb,#ffeef5,#fff8f3);
+  color:#6b4052;
+}
+.page{
+  min-height:100vh; display:none; align-items:center; justify-content:center;
+  padding:28px 20px; text-align:center; position:relative;
+}
+.page.active{display:flex}
+.card{
+  width:min(92vw,620px); padding:34px 25px; border-radius:32px;
+  background:rgba(255,255,255,.72); box-shadow:0 18px 55px rgba(154,82,112,.15);
+  border:1px solid rgba(255,255,255,.9); /* backdrop-filter removed for smoother mobile performance */
+}
+h1{font-size:clamp(38px,9vw,62px);margin:0 0 12px;font-weight:700}
+h2{font-size:clamp(30px,7vw,48px);margin:0 0 18px}
+p{font-size:clamp(22px,5vw,30px);line-height:1.35;margin:12px 0}
+.small{font-size:clamp(18px,4vw,24px)}
+.heart{font-size:58px;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.btn{
+  border:0; border-radius:999px; padding:13px 25px; margin-top:22px;
+  font:600 22px "Dancing Script",cursive; cursor:pointer;
+  background:#e99ab6;color:white;box-shadow:0 8px 20px rgba(190,91,125,.2);
+}
+.btn.secondary{background:#fff;color:#b76b88;border:1px solid #f0bfd0}
+.nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.answer{
+  margin:18px 0 26px; padding:18px 18px 20px; border-radius:24px;
+  background:rgba(255,240,247,.82); text-align:left;
+}
+.q{font-size:25px;font-weight:700;margin-bottom:8px}
+.a{font-size:24px;line-height:1.4}
+.ending{font-size:clamp(34px,8vw,52px)}
+.hearts{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.float{position:absolute;bottom:-40px;font-size:25px;animation:rise 9s linear infinite;opacity:.45;will-change:transform,opacity}
+@keyframes rise{to{transform:translateY(-115vh) rotate(18deg);opacity:0}}
+.note{font-size:17px;opacity:.65;margin-top:16px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important}
+}
+
+.returned-page-shell{min-height:100vh;width:100%;overflow:auto}.returned-page{min-height:100vh;display:none;align-items:center;justify-content:center;padding:28px 20px;text-align:center;font-family:"Dancing Script",cursive}.returned-page.active{display:flex}.returned-card{width:min(92vw,620px);padding:34px 25px;border-radius:32px;background:rgba(255,255,255,.82);box-shadow:0 18px 45px rgba(154,82,112,.14)}.returned-card h1{font-size:clamp(38px,9vw,62px)}.returned-card h2{font-size:clamp(30px,7vw,48px)}.returned-card p{font-size:clamp(22px,5vw,30px);line-height:1.35}.returned-small{font-size:clamp(18px,4vw,24px)!important}.returned-heart{font-size:58px}.returned-btn{border:0;border-radius:999px;padding:13px 25px;margin-top:22px;font:600 22px "Dancing Script",cursive;cursor:pointer;background:#e99ab6;color:white}.returned-btn.secondary{background:#fff;color:#b76b88;border:1px solid #f0bfd0}.returned-nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.answer-return-card{margin:18px 0;padding:18px;border-radius:24px;background:rgba(255,240,247,.88);text-align:left}.answer-return-q{font-size:25px;font-weight:700}.answer-return-a{font-size:24px;line-height:1.4}.returned-ending{font-size:clamp(34px,8vw,52px)!important}
+</style>
+</head>
+<body><main class="wrap"><div id="app" class="screen">
+  <div class="card" id="staticFallback">
+    <div class="garden">🌷 ✨ 🌸 ✨ 🌷</div>
+    <div class="script">Some feelings deserve more than a message. ♡</div>
+    <p class="sub">Turn the words you keep inside into a little love story — personal, beautiful, and made for someone special.</p>
+    <button onclick="start()">Begin Something Beautiful ❤️</button>
+    <p class="small">Made with little pieces of love, stars & flowers ✦</p>
+  </div>
+</main>
+<script>
+const app=document.getElementById('app');
+const b64=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o))));
+const unb64=s=>{try{return JSON.parse(decodeURIComponent(escape(atob(s))))}catch{return null}};
+const qs=new URLSearchParams(location.search);
+const hash=location.hash;
+const qsurprise=qs.get('surprise');
+const qanswers=qs.get('answers');
+let received=hash.startsWith('#surprise=')?unb64(hash.slice(10)):(qsurprise?unb64(qsurprise):null);
+let answerPacket=hash.startsWith('#answers=')?unb64(hash.slice(9)):(qanswers?unb64(qanswers):null);
+let data={name:'',senderName:'',rel:'',messages:'',reasons:'',favorite:'',secret:'',photos:[],question:'',questions:[],voice:''};
+
+function home(){app.innerHTML=`<div class="card"><div class="garden">🌷 ✨ 🌸 ✨ 🌷</div><div class="script">Some feelings deserve more than a message. ♡</div><p class="sub">Turn the words you keep inside into a little love story — personal, beautiful, and made for someone special.</p><button onclick="start()">Begin Something Beautiful ❤️</button><p class="small">Made with little pieces of love, stars & flowers ✦</p></div>`}
+function start(){step(1)}
+const steps=[
+['Who is this little love story for?','Start with the person who makes your heart feel a little fuller.'],
+['What have you been wanting to say?','Write the words you usually keep inside. Take your time.'],
+['Why do you love them?','Something tiny, something beautiful, or something only you understand.'],
+['Why are they your favorite person?','Tell them what makes their place in your heart so special.'],
+['A little secret note','Leave them a private little thought, memory, promise, or confession.'],
+['Some Special Memories for You','Choose a few photos that hold a special place in your story.'],
+['A little voice from you','Say something they can hear in your own voice.'],
+['Questions from your heart','Choose the little questions you want them to answer — and customize or add your own.']
+];
+function step(n){
+ let [title,desc]=steps[n-1];
+ let body='';
+ if(n===1) body=`<div class="field"><label>Your name</label><input id="senderName" placeholder="Enter your name" value="${esc(data.senderName)}"></div><div class="field"><label>Their name</label><input id="name" placeholder="Enter their name" value="${esc(data.name)}"></div><div class="field"><label>Your relationship</label><div class="choices">${['Partner','Boyfriend','Girlfriend','Husband','Wife','Someone Special','Crush','Best Friend'].map(x=>`<button type="button" class="secondary ${data.rel===x?'sel':''}" onclick="data.rel='${x}';this.parentNode.querySelectorAll('button').forEach(b=>b.classList.remove('sel'));this.classList.add('sel')">${x}</button>`).join('')}</div></div>`;
+ if(n===2) body=`<div class="field"><textarea id="messages" maxlength="1000" placeholder="Write what your heart wants to say...">${esc(data.messages)}</textarea></div>`;
+ if(n===3) body=`<div class="field"><textarea id="reasons" placeholder="Tell them why you love them...">${esc(data.reasons)}</textarea></div>`;
+ if(n===4) body=`<div class="field"><textarea id="favorite" placeholder="Why are they your favorite person?">${esc(data.favorite)}</textarea></div>`;
+ if(n===5) body=`<div class="field"><textarea id="secret" placeholder="A promise, a secret, a memory...">${esc(data.secret)}</textarea></div>`;
+ if(n===6) body=`<div class="field"><input id="photos" type="file" accept="image/*" multiple><p class="small">You can choose a few special memories. They will appear one by one inside the surprise. 🌸</p></div>`;
+ if(n===7) body=`<div class="voice-panel"><div class="script" style="font-size:32px">A Little Voice From You 🎙️💗</div><p class="sub">Say something they can hear in your own voice. Keep it short and sweet. ♡</p><button type="button" id="recordBtn" onclick="toggleRecording()">🎙️ Start Recording</button><div id="voiceStatus" class="voice-status">${data.voice?'A voice message is ready ♡':'Nothing recorded yet'}</div><audio id="voicePreview" controls class="${data.voice?'':'hidden'}" src="${data.voice||''}"></audio></div><p class="small">Next, you can choose the questions you want them to answer. 💌</p>`;
+ if(n===8){const defaults=['What is one little thing about us that makes you smile? 💗','When you think of me, what is the first memory that comes to your heart? 🌸','What is something you want us to do together someday? ✨','What is one thing you want me to always remember about you? 💌','If our story had one more beautiful chapter, what would you want it to be? 🌷']; if(!data.questions.length)data.questions=defaults.map(q=>({text:q,enabled:true})); body=`<div id="questionList">${data.questions.map((q,i)=>`<div class="question-edit"><div class="field"><label>Question ${i+1}</label><textarea class="qinput" data-i="${i}">${esc(q.text)}</textarea><label class="checkline"><input type="checkbox" class="qcheck" data-i="${i}" ${q.enabled!==false?'checked':''}> Ask this question 💗</label></div></div>`).join('')}</div><div class="nav"><button type="button" class="secondary" onclick="addQuestion()">＋ Add Another Question</button></div><p class="small">You can edit every question, remove one by clearing it, or add as many as you like. The receiver will see only the questions you choose — never the sender-side form. ♡</p>`;}
+ app.innerHTML=`<div class="card"><div class="progress"><i style="width:${n/8*100}%"></i></div><span class="pill">A little beginning · ${n} of 8</span><h2 class="script">${title}</h2><p class="sub">${desc}</p>${body}<div class="nav">${n>1?'<button class="secondary" onclick="saveStep();step('+(n-1)+')">Back</button>':''}<button onclick="${n===8?'validateSenderStep(8)&&finish()':'nextSenderStep('+n+')'}">${n===8?'Make Them Surprise 💗':'Keep going, love ♡'}</button></div></div>`;
+}
+function validateSenderStep(n){
+ if(n===1){
+  const sender=(document.getElementById('senderName')?.value||'').trim();
+  const receiver=(document.getElementById('name')?.value||'').trim();
+  if(!sender){alert('Please enter your name first. 💗');document.getElementById('senderName')?.focus();return false}
+  if(!receiver){alert('Please enter their name first. 💗');document.getElementById('name')?.focus();return false}
+  if(!data.rel){alert('Please choose your relationship first. 🌷');return false}
+ }
+ if(n===2 && !(document.getElementById('messages')?.value||'').trim()){alert('Write your little message before going on. 💌');document.getElementById('messages')?.focus();return false}
+ if(n===3 && !(document.getElementById('reasons')?.value||'').trim()){alert('Tell them why you love them before going on. ❤️');document.getElementById('reasons')?.focus();return false}
+ if(n===4 && !(document.getElementById('favorite')?.value||'').trim()){alert('Tell them what makes them your favorite person. 💗');document.getElementById('favorite')?.focus();return false}
+ if(n===5 && !(document.getElementById('secret')?.value||'').trim()){alert('Write their little secret note before going on. 🤫');document.getElementById('secret')?.focus();return false}
+ if(n===8){
+  const chosen=[...document.querySelectorAll('.qinput')].map((el,i)=>({text:el.value.trim(),enabled:document.querySelector(`.qcheck[data-i="${i}"]`)?.checked!==false})).filter(q=>q.text&&q.enabled);
+  if(!chosen.length){alert('Please choose at least one question for them to answer. 💌');return false}
+ }
+ return true;
+}
+function nextSenderStep(n){
+ if(!validateSenderStep(n))return;
+ saveStep();
+ step(n+1);
+}
+function saveStep(){
+ data.senderName=document.getElementById('senderName')?.value??data.senderName;
+ data.name=document.getElementById('name')?.value??data.name;
+ data.rel=data.rel||'';
+ data.messages=document.getElementById('messages')?.value??data.messages;
+ data.reasons=document.getElementById('reasons')?.value??data.reasons;
+ data.favorite=document.getElementById('favorite')?.value??data.favorite;
+ data.secret=document.getElementById('secret')?.value??data.secret;
+ data.question=document.getElementById('question')?.value??data.question;
+ const qins=[...document.querySelectorAll('.qinput')]; if(qins.length){data.questions=qins.map((el,i)=>({text:el.value.trim(),enabled:document.querySelector(`.qcheck[data-i=\"${i}\"]`)?.checked!==false})).filter(q=>q.text)};
+ if(window.recordedVoice) data.voice=window.recordedVoice;
+}
+let mediaRecorder=null, voiceChunks=[];
+async function toggleRecording(){
+ const btn=document.getElementById('recordBtn'), status=document.getElementById('voiceStatus');
+ if(mediaRecorder && mediaRecorder.state==='recording'){ mediaRecorder.stop(); btn.textContent='🎙️ Start Recording'; status.textContent='Saving your little voice… ♡'; return; }
+ if(!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder){ alert('Voice recording is not supported in this browser. You can still use the rest of the surprise. 💗'); return; }
+ try{
+  const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+  voiceChunks=[]; mediaRecorder=new MediaRecorder(stream,{audioBitsPerSecond:24000});
+  mediaRecorder.ondataavailable=e=>{if(e.data.size)voiceChunks.push(e.data)};
+  mediaRecorder.onstop=()=>{
+   stream.getTracks().forEach(x=>x.stop());
+   const blob=new Blob(voiceChunks,{type:mediaRecorder.mimeType||'audio/webm'});
+   const reader=new FileReader(); reader.onload=()=>{window.recordedVoice=reader.result; data.voice=reader.result; const a=document.getElementById('voicePreview'); if(a){a.src=reader.result;a.classList.remove('hidden')} const s=document.getElementById('voiceStatus'); if(s)s.textContent='Your voice message is ready ♡';}; reader.readAsDataURL(blob);
+  };
+  mediaRecorder.start(); btn.textContent='⏹️ Stop Recording'; status.textContent='Recording… speak from your heart 💗';
+  setTimeout(()=>{if(mediaRecorder?.state==='recording')toggleRecording()},30000);
+ }catch(e){ alert('Microphone permission is needed to record your voice. 💗'); }
+}
+function addQuestion(){const list=document.getElementById('questionList');if(!list)return;const i=list.querySelectorAll('.qinput').length;const wrap=document.createElement('div');wrap.className='question-edit';wrap.innerHTML=`<div class="field"><label>Question ${i+1}</label><textarea class="qinput" data-i="${i}" placeholder="Write your own little question… 💗"></textarea><label class="checkline"><input type="checkbox" class="qcheck" data-i="${i}" checked> Ask this question 💗</label></div>`;list.appendChild(wrap)}
+async function finish(){
+ saveStep();
+ if(!data.questions.length && data.question) data.questions=[{text:data.question,enabled:true}];
+ const files=document.getElementById('photos')?.files;
+ if(files?.length){data.photos=[];for(const f of [...files].slice(0,6)){data.photos.push(await resize(f,900));}}
+ const token=b64(data);
+ const link=location.href.split('#')[0]+'#surprise='+token;
+ app.innerHTML=`<div class="card"><div class="garden">🌹 ✨ 💌 ✨ 🌹</div><div class="script">Your little surprise is ready ♡</div><p class="sub">Send this link to <b>${esc(data.name||'someone special')}</b> from <b>${esc(data.senderName||'someone special')}</b>. They'll receive a completely different experience — no questions for them except the one you chose at the end.</p><textarea readonly id="share">${link}</textarea><div class="nav"><button type="button" class="secondary final-back-btn" onclick="goBackFromFinal()">← Back & Edit</button>
+<button onclick="shareSurprise()">Share Your Surprise 💌</button><button class="secondary" onclick="location.href=location.href.split('#')[0]">Make Another</button></div><p class="small">For a real cross-device deployment, the link carries the surprise data inside it.</p></div>`;
+}
+function receiver(){app.innerHTML=`<div class="receiver-screen"><div class="receiver-card"><div id="receiverHome"><div class="receiver-decor">🌷 ✨ ♡ ✨ 🌷</div><div class="receiver-script">Hey <span class="receiver-name">${esc(received.name||'someone special')}</span>… ♡</div><p class="receiver-soft">Someone special has sent a little something just for you. 💗</p><p class="receiver-message" style="font-size:29px;margin:18px 0">There’s something waiting behind this little door…<br>made especially for you. ♡</p><div class="receiver-door-wrap"><div class="receiver-gate" id="receiverGate" onclick="openGate()"><div class="receiver-gate-frame"></div><div class="receiver-gate-door"></div></div></div><button class="receiver-open-btn" onclick="openGate()">Tap to Reveal the Name ✨</button></div><div id="receiverContent" class="receiver-content"></div></div></div>`}
+function openGate(){const g=document.getElementById('receiverGate');if(!g)return;g.classList.add('open');setTimeout(()=>revealSender(),1000)}
+function revealSender(){const box=document.getElementById('receiverContent'),home=document.getElementById('receiverHome');home.style.display='none';box.innerHTML=`<div class="receiver-step active"><div class="receiver-decor">💗 ✨ 🌸 ✨ 💗</div><div class="receiver-title">It’s <span class="receiver-name">${esc(received.senderName||'Someone Special')}</span>… ❤️</div><p class="receiver-soft">${esc(received.senderName||'Someone Special')} has sent you this little surprise. 💌</p><div class="receiver-letter"><div class="receiver-message">A little piece of my heart is waiting for you inside… just for you. ♡</div></div><button class="receiver-open-btn" onclick="showStep(0)">More surprises are waiting for you… 💗</button><button class="receiver-back" onclick="goHome()">← Go Back ♡</button></div>`}
+function goHome(){location.hash='';location.reload()}
+function items(){return [
+ {kind:'message',title:'Some words are meant to be felt, not just read… 💌',text:received.messages,more:'Let Me Show You Another Little Feeling… 🌷'},
+ {kind:'message',title:'A little corner of my heart… 💗',text:[received.reasons,received.favorite].filter(Boolean).join('\n\n'),more:'There’s One More Thing I Kept For You… ✨'},
+ {kind:'message',title:'Psst… this one is just between we two 🤭',text:received.secret,more:'Keep This Little Secret Close… 💕'},
+ {kind:'photos',title:'Memories, one little moment at a time… 📸',photos:Array.isArray(received.photos)?received.photos:[],more:'And Now… Listen to My Heart 🎙️'},
+ {kind:'voice',title:'Close your eyes and hear my heart… 🎙️❤️',voice:received.voice,more:'Before You Go… I Have a Few Little Things to Ask 💌'}
+]}
+function showStep(i){stepIndex=i;const s=items()[i],box=document.getElementById('receiverContent');if(!box)return;box.innerHTML=`<div class="receiver-step active"><div class="receiver-decor">♡ ✦ 💗 ✦ ♡</div><div class="receiver-title">${s.title}</div>${s.kind==='message'?`<div class="receiver-letter"><div class="receiver-message">${esc(s.text||'A little feeling was saved here especially for you. ♡')}</div></div>`:''}${s.kind==='voice'?`<div class="receiver-letter"><div class="receiver-message">A little voice, saved especially for you. ❤️</div>${s.voice?`<audio controls style="width:100%;margin-top:15px" src="${s.voice}"></audio>`:`<p class="receiver-soft">My voice will be waiting here when they record one. ♡</p>`}</div>`:''}${s.kind==='photos'?`<div id="photoArea"></div>`:''}${s.kind!=='photos'?`<button class="receiver-more receiver-question-btn" onclick="nextStep()">${s.more}</button>`:''}<button class="receiver-back" onclick="backStep()">← Go Back & Read Again ♡</button></div>`;if(s.kind==='photos')renderPhoto(0)}
+function nextStep(){if(stepIndex<items().length-1)showStep(stepIndex+1);else showQuestions()}
+function backStep(){if(stepIndex>0)showStep(stepIndex-1);else revealSender()}
+function renderPhoto(i){const s=items()[3],area=document.getElementById('photoArea');if(!area)return;if(!s.photos.length){area.innerHTML='<div class="receiver-letter"><div class="receiver-message">Some memories are felt, not just seen. ♡</div></div><button class="receiver-more receiver-question-btn" onclick="nextStep()">'+s.more+'</button>';return}const p=s.photos[i];area.innerHTML=`<div class="receiver-memory"><img src="${p}" alt="A special memory"><div class="receiver-soft" style="margin-top:12px">${i+1} of ${s.photos.length} · A memory wrapped in love ♡</div></div><button class="receiver-more receiver-question-btn" onclick="${i<s.photos.length-1?`renderPhoto(${i+1})`:'nextStep()'}">${i<s.photos.length-1?'Another little memory… 🌸':s.more}</button>`}
+window.questionAnswers=[];window.receiverQuestions=(received?.questions||[]).filter(q=>q&&q.text&&q.enabled!==false);
+function showQuestions(){const box=document.getElementById('receiverContent');if(!window.receiverQuestions.length){finishReceiver();return}box.innerHTML=`<div class="receiver-step active"><div class="receiver-decor">🌹 ✨ 💌 ✨ 🌹</div><div class="receiver-title">A Few Little Things From Your Heart… ♡</div><p class="receiver-soft">${esc(received.senderName||'Someone special')} left these little questions for you. Every answer is required, because every little answer matters. ❤️</p><div id="allQuestionAnswers"></div><button class="receiver-more send-heart" onclick="sendAllAnswers()">Send Your Heart ❤️</button><button class="receiver-back" onclick="backStep()">← Go Back & Read Again ♡</button></div>`;const list=document.getElementById('allQuestionAnswers');window.receiverQuestions.forEach((q,i)=>{const w=document.createElement('div');w.className='receiver-question-card';w.innerHTML=`<div class="receiver-soft" style="font-size:22px">Question ${i+1} 💌</div><div class="receiver-letter"><div class="receiver-question">${esc(q.text)}</div></div><div class="receiver-answer-label">Your little answer… ♡</div><textarea class="receiver-answer all-answer" data-i="${i}" required placeholder="Write your heart here… 💗"></textarea>`;list.appendChild(w)})}
+function sendAllAnswers(){const fields=[...document.querySelectorAll('.all-answer')];const answers=window.receiverQuestions.map((q,i)=>({question:q.text,answer:(fields[i]?.value||'').trim()}));const missing=answers.findIndex(x=>!x.answer);if(missing>=0){alert(`Question ${missing+1} ka answer dena zaroori hai 💗`);fields[missing]?.focus();return}window.questionAnswers=answers.map(x=>x.answer);const packet={senderName:received.senderName||'Someone Special',receiverName:received.name||'Someone Special',questions:answers};window.finalAnswerLink=location.href.split('#')[0].split('?')[0]+'?answers='+encodeURIComponent(b64(packet));showAnswerReady()}
+function showAnswerReady(){const box=document.getElementById('receiverContent');box.innerHTML=`<div class="receiver-step active"><div class="receiver-decor">💗 ✨ 🌸 ✨ 💗</div><div class="receiver-title">Your Heart Is Ready to Travel… ❤️</div><div class="receiver-letter"><div class="receiver-message">You answered every little question with your own heart. Now your reply is ready to go back to ${esc(received.senderName||'them')}. 💌</div></div><button class="receiver-open-btn send-heart" onclick="shareAnswer()">Send Your Heart ❤️</button><div class="answer-link-box"><div class="receiver-soft" style="font-size:21px">Your reply link</div><textarea readonly>${esc(window.finalAnswerLink)}</textarea></div><button class="receiver-back" onclick="showQuestions()">← Go Back & Edit Answers ♡</button></div>`}
+async function shareAnswer(){const link=window.finalAnswerLink;if(navigator.share){try{await navigator.share({title:'A little reply ❤️',text:'I sent you my heart 💗',url:link});return}catch(e){}}try{await navigator.clipboard.writeText(link);alert('Your answer link is copied. Send it to them with love ❤️')}catch(e){prompt('Copy your answer link:',link)}}
+function finishReceiver(){document.getElementById('receiverContent').innerHTML='<div class="receiver-step active"><div class="receiver-decor">💗 ✨ 🌸</div><div class="receiver-title">That was the last little question ♡</div><div class="receiver-letter"><div class="receiver-message">Thank you for opening every little piece of this surprise. You made the story even more beautiful. 🌷</div></div></div>'}
+if(hash.startsWith('#answers=')||qs.get('answers')){
+  const packet=hash.startsWith('#answers=')?unb64(hash.slice(9)):unb64(qs.get('answers'));
+  if(packet){senderAnswer(packet)}else{home()}
+}else if(hash.startsWith('#surprise=')||qsurprise){
+  if(received){receiver()}else{home()}
+}else{
+  home();
+}
+
+function senderAnswer(packet){
+const sender=packet?.senderName||"Someone special",receiver=packet?.receiverName||"someone special";const qs=Array.isArray(packet?.questions)?packet.questions:[];const safe=v=>esc(String(v??""));const cards=qs.map((x,i)=>`<div class="answer-return-card"><div class="answer-return-q">${i+1}. ${safe(x?.question??x?.q??"")}</div><div class="answer-return-a">${safe(x?.answer??x?.a??"").replace(/\n/g,"<br>")}</div></div>`).join("");app.innerHTML=`<div class="returned-page-shell"><div class="returned-page active" id="returned1"><div class="returned-card"><div class="returned-heart">❤️</div><h1>A little piece of your heart<br>has found its way back to you…</h1><p><strong>${safe(receiver)}</strong> has sent something back to <strong>${safe(sender)}</strong>… 💗</p><p class="returned-small">They took a little moment to put their feelings into words…<br>and now, these little pieces of their heart are yours to discover. 🌷✨</p><button class="returned-btn" onclick="returnedShow(2)">Tap to open their heart… ♡</button></div></div><div class="returned-page" id="returned2"><div class="returned-card"><div class="returned-heart">💌</div><h2>Here are the answers from ${safe(receiver)}’s heart…</h2>${cards||"<div class=\"answer-return-card\"><div class=\"answer-return-a\">This little heart is waiting for its answers… ❤️</div></div>"}<div class="returned-nav"><button class="returned-btn secondary" onclick="returnedShow(1)">← Back</button><button class="returned-btn" onclick="returnedShow(3)">One last little thing… ♡</button></div></div></div><div class="returned-page" id="returned3"><div class="returned-card"><div class="returned-heart">🌷</div><h2 class="returned-ending">Happy Ending… for now ❤️</h2><p><strong>${safe(sender)}</strong> & <strong>${safe(receiver)}</strong> — your little story continues. 🌸</p><p>Because some stories don't really end…<br>they simply become another beautiful memory for ${safe(sender)} & ${safe(receiver)}. ✨</p><p>And maybe this little answer was just another way of saying…<br><strong>“I'm glad it's you.” ❤️</strong></p><button class="returned-btn secondary" onclick="returnedShow(2)">← Read the answers again</button></div></div></div>`;}
+function returnedShow(n){document.querySelectorAll(".returned-page").forEach(x=>x.classList.remove("active"));const t=document.getElementById("returned"+n);if(t)t.classList.add("active");window.scrollTo(0,0)}
+
+function openAnswerDoubleDoor(){
+ const d=document.getElementById('answerDoubleDoor');
+ if(d){d.classList.add('open');}
+ setTimeout(()=>{const x=document.getElementById('answerInside');if(x)x.classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})},900);
+}
+function openAnswerDoor(){openAnswerDoubleDoor()}
+async function shareSurprise(){
+ const link=document.getElementById('share').value;
+ if(navigator.share){try{await navigator.share({title:'A little surprise for you ❤️',text:'Someone made a little surprise just for you 💌',url:link});return}catch(e){}}
+ try{await navigator.clipboard.writeText(link);alert('Link copied — now send it to them 💌')}catch(e){prompt('Copy this surprise link:',link)}
+}
+async function shareAnswer(){
+ const link=window.finalAnswerLink||document.getElementById('answerLink')?.value||'';
+ if(navigator.share){try{await navigator.share({title:'Your answer ❤️',text:'I answered your little question 💗',url:link});return}catch(e){}}
+ try{await navigator.clipboard.writeText(link);alert('Link copied — now send it back to them 💗')}catch(e){prompt('Copy this answer link:',link)}
+}
+function resize(file,max){return new Promise(r=>{let im=new Image(),c=document.createElement('canvas'),x=URL.createObjectURL(file);im.onload=()=>{let q=Math.min(1,max/im.width,max/im.height);c.width=im.width*q;c.height=im.height*q;c.getContext('2d').drawImage(im,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',.72));URL.revokeObjectURL(x)};im.src=x})}
+function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+
+function goBackFromFinal(){
+  if(typeof step==='function'){
+    try{ step(8); return; }catch(e){}
+  }
+  if(typeof currentStep!=='undefined' && typeof renderStep==='function'){
+    try{ currentStep=8; renderStep(); return; }catch(e){}
+  }
+  history.back();
+}
+
+
+</script>
+</body></html>
